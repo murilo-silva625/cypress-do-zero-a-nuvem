@@ -28,7 +28,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.success').should('be.visible')
   })
 
-  it('blog select', () =>{
+  it('cursos select', () =>{
     cy.get('#firstName').type('murilo')
     cy.get('#lastName').type('pereira')
     cy.get('#email').type('pereira@gmail.com')
@@ -40,7 +40,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.success').should('be.visible')
   })
 
-  it('blog select', () =>{
+  it('mentoria select', () =>{
     cy.get('#firstName').type('murilo')
     cy.get('#lastName').type('pereira')
     cy.get('#email').type('pereira@gmail.com')
@@ -52,7 +52,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.success').should('be.visible')
   })
 
-  it('blog select', () =>{
+  it('youtube select', () =>{
     cy.get('#firstName').type('murilo')
     cy.get('#lastName').type('pereira')
     cy.get('#email').type('pereira@gmail.com')
