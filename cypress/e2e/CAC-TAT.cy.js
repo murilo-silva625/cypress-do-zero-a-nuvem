@@ -10,6 +10,9 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('#firstName').type('murilo')
     cy.get('#lastName').type('pereira')
     cy.get('#email').type('pereira@gmail.com')
-    cy.get('#product').click('#product')
+    cy.get('#open-text-area').type('algo')
+    cy.get('.button[type="submit"]').click()
+
+    cy.get('.success').should('be.visible')
   })
 })
