@@ -64,9 +64,48 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.success').should('be.visible')
   })
 
+  it('Invalid email format', () =>{
+    cy.get('#firstName').type('murilo')
+    cy.get('#lastName').type('pereira')
+    cy.get('#email').type('pereira@gmala,com')
+    cy.get('#open-text-area').type('algo')
+    cy.get('.button[type="submit"]').click()
+
+    cy.get('.error').should('be.visible')
+  })
+
   it('error check', () => {
     cy.get('.button[type="submit"]').click()
 
     cy.get('.error').should('be.visible')
+  })
+
+  it('alphanumeric phone', () => {
+    cy.get('#phone').type('abcd').should('have.value', '')
+  })
+
+  it('phone required check', () => {
+    cy.get('#firstName').type('murilo')
+    cy.get('#lastName').type('pereira')
+    cy.get('#email').type('pereira@gmail.com')
+    cy.get('#open-text-area').type('algo')
+    cy.get('#check > [name="phone"]').click()
+
+    cy.get('.button[type="submit"]').click()
+
+    cy.get('.error').should('be.visible')
+  })
+
+  it.only('fill required phone number', () => {
+    cy.get('#firstName').type('murilo')
+    cy.get('#lastName').type('pereira')    
+    cy.get('#email').type('pereira@gmail.com')
+    cy.get('#open-text-area').type('algo')
+    cy.get('#phone').type('1234', {delay : 100})
+    cy.get('#check > [name="phone"]').click()
+
+    cy.get('.button[type="submit"]').click()
+
+    cy.get('.success').should('be.visible')
   })
 })
