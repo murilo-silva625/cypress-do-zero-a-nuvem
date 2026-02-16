@@ -96,7 +96,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.error').should('be.visible')
   })
 
-  it.only('fill required phone number', () => {
+  it('fill required phone number', () => {
     cy.get('#firstName').type('murilo')
     cy.get('#lastName').type('pereira')    
     cy.get('#email').type('pereira@gmail.com')
@@ -108,4 +108,12 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
     cy.get('.success').should('be.visible')
   })
+
+  it.only('using command', () =>{
+    cy.FillMandatoryFields()
+    
+    
+    //cy.get('.button[type=submit]').click()
+    cy.get('.success').should('be.visible')
+   })
 })
