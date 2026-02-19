@@ -85,11 +85,8 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   })
 
   it('phone required check', () => {
-    cy.get('#firstName').type('murilo')
-    cy.get('#lastName').type('pereira')
-    cy.get('#email').type('pereira@gmail.com')
-    cy.get('#open-text-area').type('algo')
-    cy.get('#check > [name="phone"]').click()
+    cy.FillMandatoryFields()
+    cy.get('#phone-checkbox').check()
 
     cy.get('.button[type="submit"]').click()
 
@@ -97,23 +94,46 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   })
 
   it('fill required phone number', () => {
-    cy.get('#firstName').type('murilo')
-    cy.get('#lastName').type('pereira')    
-    cy.get('#email').type('pereira@gmail.com')
-    cy.get('#open-text-area').type('algo')
+    cy.FillMandatoryFields()
     cy.get('#phone').type('1234', {delay : 100})
-    cy.get('#check > [name="phone"]').click()
+    cy.get('#phone-checkbox').check()
 
     cy.get('.button[type="submit"]').click()
 
     cy.get('.success').should('be.visible')
   })
 
-  it.only('using command', () =>{
+   it('radio ajuda select', () => {
     cy.FillMandatoryFields()
+    cy.get('input[type="radio"][value="ajuda"]').check().should('be.checked')
     
-    
-    //cy.get('.button[type=submit]').click()
+    cy.SendFields()
     cy.get('.success').should('be.visible')
    })
+
+   it('radio elogio select', () => {
+    cy.FillMandatoryFields()
+    cy.get('input[type="radio"][value="elogio"]').check().should('be.checked')
+    
+    cy.SendFields()
+    cy.get('.success').should('be.visible')
+   })
+
+   it('radio feedback select', () => {
+    cy.FillMandatoryFields()
+    cy.get('input[type="radio"][value="feedback"]').check().should('be.checked')
+    
+    cy.SendFields()
+    cy.get('.success').should('be.visible')
+   })
+
+   it('Mark each type of service', () => {
+    cy.FillMandatoryFields()
+    cy.get('input[type="radio"]').each(typeOfService =>{
+      cy.wrap(typeOfService).check().should('be.checked')
+    })
+    
+    cy.SendFields()
+    cy.get('.success').should('be.visible')
+  })
 })
