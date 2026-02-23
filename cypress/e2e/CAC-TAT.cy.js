@@ -161,7 +161,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
      .and('have.attr', 'target', '_blank')
   })
 
-  it('redirecting using invoke', () => {
+  it('redirecting using invoke removeattr', () => {
      cy.contains('a', 'Política de Privacidade').invoke('removeAttr', 'target').click()
      
      cy.contains('h1', 'CAC TAT - Política de Privacidade').should('be.visible')
